@@ -1,10 +1,5 @@
 "use client";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, EffectCreative } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-creative";
 import {
   FaHandsHelping,
   FaHandHoldingHeart,
@@ -73,58 +68,31 @@ const DonationPage: React.FC = () => {
       <h1 className="text-4xl font-bold text-center mb-8 text-green-900">
         Donate for a Cause
       </h1>
-      <Swiper
-        modules={[Pagination, Autoplay, EffectCreative]}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        effect="creative"
-        loop={true} // This makes the swiper loop infinitely
-        creativeEffect={{
-          prev: {
-            shadow: true,
-            translate: ["-120%", 0, -500],
-            rotate: [0, 0, -45],
-          },
-          next: {
-            shadow: true,
-            translate: ["120%", 0, -500],
-            rotate: [0, 0, 45],
-          },
-        }}
-        spaceBetween={30}
-        slidesPerView={1}
-        breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }}
-        className="w-full max-w-full"
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {donationTypes.map((type) => (
-          <SwiperSlide key={type.id}>
-            <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow w-full p-20">
-              <div className="flex items-center justify-center mb-4">
-                {type.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-center text-gray-800 mb-2">
-                {type.title}
-              </h3>
-              <p className="text-gray-600 text-center mb-4">
-                {type.description}
-              </p>
-              <div className="text-center">
-                <a
-                  href="https://donorchoice.ca/embedded/mumfc"
-                  target="_blank"
-                  className="px-4 py-2 bg-green-700 text-white rounded-sm font-medium hover:bg-yellow-600 transition-all"
-                >
-                  Donate Now
-                </a>
-              </div>
+          <div
+            key={type.id}
+            className="bg-white border border-gray-200 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div className="flex items-center justify-center mb-4">
+              {type.icon}
             </div>
-          </SwiperSlide>
+            <h3 className="text-xl font-semibold text-center text-gray-800 mb-2">
+              {type.title}
+            </h3>
+            <p className="text-gray-600 text-center mb-4">{type.description}</p>
+            <div className="text-center">
+              <a
+                href="https://donorchoice.ca/embedded/mumfc"
+                target="_blank"
+                className="px-4 py-2 bg-green-700 text-white rounded-sm font-medium hover:bg-yellow-600 transition-all"
+              >
+                Donate Now
+              </a>
+            </div>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };

@@ -36,22 +36,18 @@ const PrayerTimeCalendar: React.FC = () => {
       const ramadanStart = moment(`${currentYear}-09-01`, "iYYYY-iMM-iDD");
 
       if (today.isAfter(ramadanStart)) {
-        ramadanStart.add(1, "iYear");
+        // If it's already Ramadan, count Ramadan days instead
+        setDaysUntilRamadan(today.iDate());
+      } else {
+        setDaysUntilRamadan(ramadanStart.diff(today, "days"));
       }
-
-      const diffInMilliseconds = ramadanStart.diff(today);
-      setDaysUntilRamadan(
-        Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24))
-      );
 
       const interval = setInterval(() => {
         const now = moment();
         const remainingTime = ramadanStart.diff(now);
-
         const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
         const seconds = Math.floor((remainingTime / 1000) % 60);
-
         setCountdown(`${hours}h ${minutes}m ${seconds}s`);
       }, 1000);
 
@@ -62,7 +58,8 @@ const PrayerTimeCalendar: React.FC = () => {
   }, []);
 
   const hijriDate = moment().format("iYYYY-iMM-iDD");
-  const dayOfWeek = moment().format("dddd");
+  // const gregorianDate = moment().format("YYYY-MM-DD");
+  // const dayOfWeek = moment().format("dddd");
 
   const calculateIqamahTime = (azanTime: string) => {
     return moment(azanTime, "HH:mm").add(5, "minutes").format("h:mm A");
@@ -161,12 +158,16 @@ const PrayerTimeCalendar: React.FC = () => {
         )}
       </div>
 
-      <div className="flex flex-col items-center md:flex-row md:justify-between md:items-center mb-8 space-y-6 md:space-y-0 md:space-x-6">
+      <div className="flex flex-col items-center ">
         {/* Hijri Date Display */}
-        <div className="bg-green-800 text-white flex gap-2 items-center p-4 rounded-lg shadow-lg w-full md:w-auto">
-          <h2 className="text-lg md:text-xl font-bold">Hijri Date</h2>
-          <p className="text-md md:text-lg mt-1">{dayOfWeek}</p>
-          <p className="text-lg md:text-xl">{hijriDate}</p>
+        <div className="flex justify-center mt-4">
+          <div className="bg-green-700  border px-4 py-2 flex flex-col items-center justify-center rounded-lg shadow-lg text-center w-64">
+            <h4 className="font-bold text-lg md:text-2xl text-yellow-300">
+              Jumuah
+            </h4>
+            <p className="text-lg text-white">Khutbah: 6:00 PM</p>
+            <p className="text-lg text-white">Prayer: 6:30 PM</p>
+          </div>
         </div>
       </div>
 
@@ -178,17 +179,14 @@ const PrayerTimeCalendar: React.FC = () => {
             backgroundImage: "url('/img/ramadan2.jpg')",
             backgroundSize: "100%",
             backgroundPosition: "center",
-            transition: "background-size 1.5s ease-in-out",
           }}
         >
-          <div
-            className="bg-transparent border shadow-lg p-6 rounded-lg transition-transform transform group-hover:scale-105"
-            style={{ transition: "transform 0.5s ease-in-out" }}
-          >
+          <div className="bg-transparent border shadow-lg p-6 rounded-lg">
             <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
-              Days Until Ramadan:
+              {moment().iMonth() === 8 ? "Ramadan Day:" : "Days Until Ramadan:"}
               <span className="text-white"> {daysUntilRamadan}</span>
             </h3>
+            <p className="text-lg text-white">Hijri Date: {hijriDate}</p>
             <p className="text-lg text-white">Time Remaining: {countdown}</p>
           </div>
         </div>
@@ -198,3 +196,131 @@ const PrayerTimeCalendar: React.FC = () => {
 };
 
 export default PrayerTimeCalendar;
+// ("use client");
+// import React, { useState, useEffect, useMemo } from "react";
+// import { getPrayerTimes } from "@/lib/api";
+// import moment from "moment-hijri";
+// // import Image from "next/image";
+// import { BsFillRecordCircleFill } from "react-icons/bs";
+
+// interface PrayerTimes {
+//   Fajr: string;
+//   Dhuhr: string;
+//   Asr: string;
+//   Maghrib: string;
+//   Isha: string;
+//   Sunrise: string;
+// }
+
+// const PrayerTimeCalendar: React.FC = () => {
+//   const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
+//   const [daysUntilRamadan, setDaysUntilRamadan] = useState<number | null>(null);
+//   const [countdown, setCountdown] = useState<string | null>(null);
+//   const location = useMemo(() => ({ city: "Calgary", country: "Canada" }), []);
+
+//   useEffect(() => {
+//     const fetchPrayerTimes = async () => {
+//       const times = await getPrayerTimes(location.city, location.country);
+//       setPrayerTimes(times);
+//     };
+
+//     fetchPrayerTimes();
+//   }, [location]);
+
+//   useEffect(() => {
+//     const calculateRamadanCountdown = () => {
+//       const today = moment();
+//       const currentYear = today.iYear();
+//       const ramadanStart = moment(`${currentYear}-09-01`, "iYYYY-iMM-iDD");
+
+//       if (today.isAfter(ramadanStart)) {
+//         // If it's already Ramadan, count Ramadan days instead
+//         setDaysUntilRamadan(today.iDate());
+//       } else {
+//         setDaysUntilRamadan(ramadanStart.diff(today, "days"));
+//       }
+
+//       const interval = setInterval(() => {
+//         const now = moment();
+//         const remainingTime = ramadanStart.diff(now);
+//         const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24);
+//         const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
+//         const seconds = Math.floor((remainingTime / 1000) % 60);
+//         setCountdown(`${hours}h ${minutes}m ${seconds}s`);
+//       }, 1000);
+
+//       return () => clearInterval(interval);
+//     };
+
+//     calculateRamadanCountdown();
+//   }, []);
+
+//   const hijriDate = moment().format("iYYYY-iMM-iDD");
+//   // const dayOfWeek = moment().format("dddd");
+
+//   return (
+//     <div className="container mx-auto pb-8 px-4">
+//       {/* Prayer Times Cards */}
+//       <div className="flex justify-center flex-wrap max-sm:gap-4">
+//         {prayerTimes ? (
+//           (
+//             ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"] as Array<
+//               keyof PrayerTimes
+//             >
+//           ).map((prayer, index) => (
+//             <div
+//               key={index}
+//               className="relative bg-white border px-4 py-2 mb-2 flex flex-col items-center justify-center rounded-b-full text-center group overflow-hidden w-32 sm:w-[45%] md:w-52"
+//             >
+//               <h4 className="font-bold text-lg md:text-2xl text-green-700 group-hover:text-white font-serif">
+//                 {prayer}
+//               </h4>
+//               <div className="text-4xl max-sm:text-xs group-hover:text-white font-mono">
+//                 {moment(prayerTimes[prayer], "HH:mm").format("h:mm A")}
+//               </div>
+//               <div className="text-gold-500 mt-2">
+//                 <BsFillRecordCircleFill size={16} color="gold" />
+//               </div>
+//             </div>
+//           ))
+//         ) : (
+//           <p className="text-center text-lg text-gray-500">
+//             Loading prayer times...
+//           </p>
+//         )}
+//       </div>
+
+//       {/* Jumu'ah Prayer Card */}
+//       <div className="flex justify-center mt-4">
+//         <div className="bg-white border px-4 py-2 flex flex-col items-center justify-center rounded-lg shadow-lg text-center w-64">
+//           <h4 className="font-bold text-lg md:text-2xl text-red-700">Jumuah</h4>
+//           <p className="text-lg">Khutbah: 1:00 PM</p>
+//           <p className="text-lg">Prayer: 1:30 PM</p>
+//         </div>
+//       </div>
+
+//       {/* Ramadan Countdown */}
+//       {daysUntilRamadan !== null && countdown && (
+//         <div
+//           className="text-center mb-8 bg-cover bg-top overflow-hidden group"
+//           style={{
+//             backgroundImage: "url('/img/ramadan2.jpg')",
+//             backgroundSize: "100%",
+//             backgroundPosition: "center",
+//           }}
+//         >
+//           <div className="bg-transparent border shadow-lg p-6 rounded-lg">
+//             <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+//               {moment().iMonth() === 8 ? "Ramadan Day:" : "Days Until Ramadan:"}
+//               <span className="text-white"> {daysUntilRamadan}</span>
+//             </h3>
+//             <p className="text-lg text-white">Hijri Date: {hijriDate}</p>
+//             <p className="text-lg text-white">Time Remaining: {countdown}</p>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default PrayerTimeCalendar;
