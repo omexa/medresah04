@@ -8,42 +8,42 @@ const ActivityPage: React.FC = () => {
       id: 1,
       title: "Mosque Development",
       description:
-        "Lorem ipsum dolor sit amet elit. Donec tempus eros vel dolor mattis aliquam.",
+        "Support the construction and maintenance of mosques to serve the community.",
       icon: <FaMosque />,
     },
     {
       id: 2,
       title: "Charity & Donation",
       description:
-        "Lorem ipsum dolor sit amet elit. Donec tempus eros vel dolor mattis aliquam.",
+        "Provide financial and material support to those in need within our community.",
       icon: <FaDonate />,
     },
     {
       id: 3,
       title: "Quran Learning",
       description:
-        "Lorem ipsum dolor sit amet elit. Donec tempus eros vel dolor mattis aliquam.",
+        "Join our Quran classes to learn and memorize the Holy Quran with qualified teachers.",
       icon: <FaQuran />,
     },
     {
       id: 4,
       title: "Hadith & Sunnah",
       description:
-        "Lorem ipsum dolor sit amet elit. Donec tempus eros vel dolor mattis aliquam.",
+        "Study the teachings of the Prophet Muhammad (PBUH) through Hadith and Sunnah sessions.",
       icon: <FaBook />,
     },
     {
       id: 5,
       title: "Parent Education",
       description:
-        "Lorem ipsum dolor sit amet elit. Donec tempus eros vel dolor mattis aliquam.",
+        "Workshops and resources to help parents raise children with Islamic values.",
       icon: <MdFamilyRestroom />,
     },
     {
       id: 6,
       title: "Help Orphans",
       description:
-        "Lorem ipsum dolor sit amet elit. Donec tempus eros vel dolor mattis aliquam.",
+        "Sponsor and support orphaned children to ensure their well-being and education.",
       icon: <FaChild />,
     },
   ];
