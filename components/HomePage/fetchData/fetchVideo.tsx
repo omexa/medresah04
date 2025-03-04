@@ -108,7 +108,8 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
 
 interface Slide {
   id: number;
@@ -126,7 +127,7 @@ export default function FetchVideoAndImage() {
   const fetchSlides = async () => {
     try {
       const response = await fetch(
-        "http://alhudaic.ca/api/slide.php?getslider=2"
+        `http://alhudaic.ca/api/slide.php?getslider=2&_=${Date.now()}`
       );
       if (!response.ok) throw new Error("Failed to fetch slides");
 
@@ -142,24 +143,33 @@ export default function FetchVideoAndImage() {
     }
   };
 
+  const isVideo = (url: string) => /\.(mp4|webm|ogg|mov|avi|mkv)$/.test(url);
+
   return (
-    <div className="">
+    <div className="w-full h-screen flex items-center justify-center">
       <Swiper
-        direction="vertical"
-        pagination={{ clickable: true }}
-        modules={[Pagination]}
-        className="w-full h-full"
+        direction="horizontal"
+        pagination={{
+          clickable: true,
+          renderBullet: (index, className) => {
+            return `<span class="${className} custom-pagination">${
+              index + 1
+            }</span>`;
+          },
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="w-full max-w-lg h-[500px] flex items-center justify-center"
       >
         {slides.map((slide) => (
           <SwiperSlide
             key={slide.id}
             className="flex items-center justify-center"
           >
-            {slide.file_url.endsWith(".mp4") ||
-            slide.file_url.endsWith(".webm") ? (
+            {isVideo(slide.file_url) ? (
               <video
                 src={`http://alhudaic.ca/api/${slide.file_url}`}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-contain"
                 autoPlay
                 loop
                 muted
@@ -169,12 +179,34 @@ export default function FetchVideoAndImage() {
               <img
                 src={`http://alhudaic.ca/api/${slide.file_url}`}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-contain"
               />
             )}
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Custom Styling for Pagination */}
+      <style jsx global>{`
+        .custom-pagination {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: bold;
+          border-radius: 50%;
+          background-color: white;
+          color: black;
+          margin: 5px;
+          cursor: pointer;
+        }
+
+        .swiper-pagination-bullet-active.custom-pagination {
+          background-color: green;
+        }
+      `}</style>
     </div>
   );
 }

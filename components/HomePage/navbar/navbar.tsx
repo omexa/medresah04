@@ -83,7 +83,7 @@ function Navbar() {
                   href="/member_registration"
                   className="hover:text-gray-500 text-xs sm:text-sm max-sm:hidden"
                 >
-                  Member Registration
+                  Sign Up
                 </Link>
               </div>
             </div>

@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <div
-      className="grid md:grid-cols-[1fr_auto] gap-5 items-center lg:justify-between px-2 sm:px-4 md:px-10 lg:px-16 py-16 lg:py-24 overflow-x-hidden"
+      className="grid gap- grid-cols-2 5 items-center lg:justify-between px-2 sm:px-4 md:px-10 lg:px-16 py-16 lg:py-24 overflow-x-hidden"
       style={{ minHeight: "calc(100vh - 5rem)" }}
     >
       {/* Hero Text Section */}
@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
           </a>
         </div>
       </div>
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full h-full">
         {/* <FetchSlide /> */}
         <FetchVideoAndImage />
       </div>
