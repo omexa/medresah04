@@ -81,7 +81,7 @@ function Navbar() {
               <div className="flex space-x-4 items-center">
                 <Link
                   href="/member_registration"
-                  className="hover:text-gray-500 text-xs sm:text-sm max-sm:hidden"
+                  className="hover:text-gray-500 text-xs sm:text-sm "
                 >
                   Sign Up
                 </Link>
