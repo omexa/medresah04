@@ -2,7 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { FaPaypal } from "react-icons/fa";
-import FetchSlide from "../fetchData/fetchVideo";
+// import FetchSlide from "../fetchData/fetchVideo";
+import FetchVideoAndImage from "../fetchData/fetchVideo";
 
 const HeroSection: React.FC = () => {
   const [isTextVisible, setIsTextVisible] = useState(false);
@@ -71,7 +72,8 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
       <div className="w-full flex items-center justify-center">
-        <FetchSlide />
+        {/* <FetchSlide /> */}
+        <FetchVideoAndImage />
       </div>
     </div>
   );
