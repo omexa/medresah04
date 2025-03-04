@@ -2,7 +2,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Home, Calendar, User, Image, Menu, ChevronLeft } from "lucide-react";
+import {
+  Home,
+  Calendar,
+  User,
+  Image,
+  Menu,
+  ChevronLeft,
+  User2Icon,
+} from "lucide-react";
 import { FaMosque } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -33,6 +41,11 @@ const Sidebar = () => {
                 href: "/dashboard",
                 label: "Dashboard",
                 icon: <Home size={20} />,
+              },
+              {
+                href: "/form/niyaIftar",
+                label: "Niyah For Iftar",
+                icon: <User2Icon size={20} />,
               },
               {
                 href: "/form/activities",
