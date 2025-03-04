@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
               "Calendar",
               "activities",
               "events",
-              "programs",
+              // "programs",
               "About",
               "contact",
             ].map((section) => (
