@@ -84,7 +84,7 @@ export default function IftarNiyahList() {
             ) : (
               <tr>
                 <td colSpan={8} className="text-center p-4">
-                  No records found.
+                  No records found still.
                 </td>
               </tr>
             )}
