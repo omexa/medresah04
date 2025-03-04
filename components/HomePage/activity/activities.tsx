@@ -299,6 +299,7 @@ const ProgramsPage: React.FC = () => {
             {/* Display the image if it exists */}
             {activity.image && (
               <img
+              
                 src={"https://alhudaic.ca/api/" + activity.image}
                 alt={activity.title || "Activity Image"}
                 className="w-full h-40 object-cover"

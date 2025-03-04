@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -87,6 +86,9 @@ const IftarNiyahForm: React.FC = () => {
             onChange={handleChange}
           />
         </div>
+        <div>
+            <p>memokeriya  new atfaw </p>
+        </div>
 
         {/* Phone */}
         <div>
@@ -122,7 +124,7 @@ const IftarNiyahForm: React.FC = () => {
           />
         </div>
 
-        {/* Amount */}
+       
         <div>
           <Label>Amount (Optional)</Label>
           <Input
@@ -135,7 +137,7 @@ const IftarNiyahForm: React.FC = () => {
         </div>
 
         {/* Submit Button */}
-        <Button type="submit" disabled={loading} className="w-full mt-6">
+        <Button type ="submit" disabled={loading} className="w-full mt-6">
           {loading ? "Submitting..." : "Submit"}
         </Button>
       </form>
