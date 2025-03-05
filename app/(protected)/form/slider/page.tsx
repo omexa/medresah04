@@ -43,7 +43,7 @@ export default function AdminSlider() {
   const fetchSlides = async () => {
     try {
       const response = await fetch(
-        `http://alhudaic.ca/api/slide.php?getslider=2&_=${Date.now()}`
+        `https://alhudaic.ca/api/slide.php?getslider=2&_=${Date.now()}`
       );
       if (!response.ok) throw new Error("Failed to fetch slides");
 
@@ -69,7 +69,7 @@ export default function AdminSlider() {
     formData.append("addSlider", "1");
 
     try {
-      const response = await fetch("http://alhudaic.ca/api/slide.php", {
+      const response = await fetch("https://alhudaic.ca/api/slide.php", {
         method: "POST",
         body: formData,
       });
@@ -107,7 +107,7 @@ export default function AdminSlider() {
       const formData = new FormData();
       formData.append("delete", id.toString());
 
-      const response = await fetch("http://alhudaic.ca/api/slide.php", {
+      const response = await fetch("https://alhudaic.ca/api/slide.php", {
         method: "POST",
         body: formData,
       });
@@ -147,7 +147,7 @@ export default function AdminSlider() {
                       slide.file_url.endsWith(".mp4") ||
                       slide.file_url.endsWith(".webm") ? (
                         <video
-                          src={`http://alhudaic.ca/api/${slide.file_url}`}
+                          src={`https://alhudaic.ca/api/${slide.file_url}`}
                           width={50}
                           height={50}
                           controls
@@ -155,7 +155,7 @@ export default function AdminSlider() {
                         />
                       ) : (
                         <Image
-                          src={`http://alhudaic.ca/api/${slide.file_url}`}
+                          src={`https://alhudaic.ca/api/${slide.file_url}`}
                           width={50}
                           height={50}
                           alt={slide.title || "No Title"}

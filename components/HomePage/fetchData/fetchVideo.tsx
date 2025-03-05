@@ -127,7 +127,7 @@ export default function FetchVideoAndImage() {
   const fetchSlides = async () => {
     try {
       const response = await fetch(
-        `http://alhudaic.ca/api/slide.php?getslider=2&_=${Date.now()}`
+        `https://alhudaic.ca/api/slide.php?getslider=2&_=${Date.now()}`
       );
       if (!response.ok) throw new Error("Failed to fetch slides");
 
@@ -168,7 +168,7 @@ export default function FetchVideoAndImage() {
           >
             {isVideo(slide.file_url) ? (
               <video
-                src={`http://alhudaic.ca/api/${slide.file_url}`}
+                src={`https://alhudaic.ca/api/${slide.file_url}`}
                 className="h-full w-full object-contain"
                 autoPlay
                 loop
@@ -177,7 +177,7 @@ export default function FetchVideoAndImage() {
               />
             ) : (
               <img
-                src={`http://alhudaic.ca/api/${slide.file_url}`}
+                src={`https://alhudaic.ca/api/${slide.file_url}`}
                 alt={slide.title}
                 className="h-full w-full object-contain"
               />
