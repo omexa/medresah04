@@ -68,8 +68,8 @@ const Sidebar = () => {
                 icon: <FaMosque size={20} />,
               },
               {
-                href: "/form/registration",
-                label: "Registrations",
+                href: "/form/members",
+                label: "Members",
                 icon: <User size={20} />,
               },
               {
