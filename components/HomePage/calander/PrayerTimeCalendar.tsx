@@ -4,6 +4,7 @@ import { getPrayerTimes } from "@/lib/api"; // Function to fetch prayer times
 import moment from "moment-hijri";
 import Image from "next/image";
 import { BsFillRecordCircleFill } from "react-icons/bs";
+import { MoonStar } from "lucide-react";
 
 interface PrayerTimes {
   Fajr: string;
@@ -156,17 +157,24 @@ const PrayerTimeCalendar: React.FC = () => {
             Loading prayer times...
           </p>
         )}
-      </div>
 
-      <div className="flex flex-col items-center ">
-        {/* Hijri Date Display */}
-        <div className="flex justify-center mt-4">
-          <div className="bg-green-700  border px-4 py-2 flex flex-col items-center justify-center rounded-lg shadow-lg text-center w-64">
-            <h4 className="font-bold text-lg md:text-2xl text-yellow-300">
-              Jumuah
-            </h4>
-            <p className="text-lg text-white">Khutbah: 6:00 PM</p>
-            <p className="text-lg text-white">Prayer: 6:30 PM</p>
+        <div className="relative bg-green-700 border min-w-max border-gray-500 px-4 py-2 mb-2 flex flex-col items-center justify-center rounded-b-full text-center group overflow-hidden w-32 sm:w-[45%] md:w-52">
+          <div className="absolute inset-0 bg-green-700 transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"></div>
+          <div className="relative z-10 text-gold-500 mt-2">
+            <MoonStar size={40} color="gold" />
+          </div>
+          <h4 className="relative z-10 font-bold text-lg md:text-2xl text-white group-hover:text-white font-serif">
+            Jumea
+          </h4>
+
+          <div className="relative z-10 text-4xl text-white max-sm:text-xs group-hover:text-white font-mono">
+            6:00 PM
+          </div>
+          <div className="relative z-10 text-md text-white mt-2 max-sm:text-xs group-hover:text-white font-mono">
+            6:25 PM
+          </div>
+          <div className="relative z-10 text-gold-500 mt-2">
+            <BsFillRecordCircleFill size={16} color="gold" />
           </div>
         </div>
       </div>
