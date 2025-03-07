@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -11,7 +10,7 @@ import {
   ChevronLeft,
   User2Icon,
 } from "lucide-react";
-import { FaMosque } from "react-icons/fa";
+// import { FaMosque } from "react-icons/fa";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // Start closed on mobile
@@ -38,59 +37,53 @@ const Sidebar = () => {
           <ul>
             {[
               {
-                href: "/dashboard",
+                href: "/dashboard/",
                 label: "Dashboard",
                 icon: <Home size={20} />,
               },
               {
-                href: "/form/niyaIftar",
-                label: "Niyah For Iftar",
+                href: "/form/niyaIftar/",
+                label: "Iftar Sponsorship",
                 icon: <User2Icon size={20} />,
               },
               {
-                href: "/form/activities",
+                href: "/form/activities/",
                 label: "Activities",
                 icon: <Calendar size={20} />,
               },
               {
-                href: "/form/event",
+                href: "/form/event/",
                 label: "Short Events",
                 icon: <Calendar size={20} />,
               },
+              // {
+              //   href: "/form/programs/",
+              //   label: "Programs",
+              //   icon: <Calendar size={20} />,
+              // },
+              // {
+              //   href: "/form/mosque/",
+              //   label: "Mosque Program",
+              //   icon: <FaMosque size={20} />,
+              // },
               {
-                href: "/form/programs",
-                label: "Programs",
-                icon: <Calendar size={20} />,
-              },
-              {
-                href: "/form/mosque",
-                label: "Mosque Program",
-                icon: <FaMosque size={20} />,
-              },
-              {
-                href: "/form/members",
+                href: "/form/members/",
                 label: "Members",
                 icon: <User size={20} />,
               },
               {
-                href: "/form/slider",
+                href: "/form/slider/",
                 label: "Sliders",
                 icon: <Image size={20} />,
               },
-
-              // {
-              //   href: "/form/settings",
-              //   label: "Settings",
-              //   icon: <Settings size={20} />,
-              // },
             ].map(({ href, label, icon }) => (
               <li
                 key={href}
-                className={`p-3 hover:bg-gray-700  ${
-                  pathname === href ? "bg-gray-500" : ""
+                className={`p-3 hover:bg-gray-700 ${
+                  pathname === href ? "bg-white text-green-900" : ""
                 }`}
               >
-                <Link href={href} className="flex items-center gap-3  h-full">
+                <Link href={href} className="flex items-center gap-3 h-full">
                   {icon} {isOpen && label}
                 </Link>
               </li>

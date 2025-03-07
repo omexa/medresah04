@@ -81,9 +81,11 @@ function Navbar() {
       >
         <div className="container mx-auto flex items-center justify-between px-4 py-3">
           <div className="text-2xl font-bold text-sm max-sm:hidden">
-            Al-Huda Islamic center
+            Al-Huda Islamic Center
           </div>
-          <div className="sm:text-2xl font-bold text-sm sm:hidden">AlHUDA</div>
+          <div className="sm:text-2xl font-bold text-sm sm:hidden">
+            Al-Huda Islamic Center
+          </div>
           <div className="hidden md:flex space-x-6 text-xs sm:text-sm">
             {[
               "home",
