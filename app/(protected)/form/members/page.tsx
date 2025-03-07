@@ -1,9 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
-// Define the shape of the member data
 interface Member {
-  id: number;
+  id: string;
   fullname: string;
   email: string;
   phone: string;
@@ -16,15 +15,14 @@ const MembersPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch members data from the backend
   const fetchMembers = async () => {
     try {
-      const response = await fetch("https://alhudaic.ca/api/members.php", {
+      const response = await fetch("https://alhudaic.ca/api/view_members.php", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "omit", // Ensure no cookies or credentials are sent
+        credentials: "omit",
       });
 
       if (!response.ok) {
@@ -32,12 +30,7 @@ const MembersPage = () => {
       }
 
       const result = await response.json();
-
-      if (result.success && Array.isArray(result.data)) {
-        setMembers(result.data as Member[]);
-      } else {
-        setError(result.message || "Failed to fetch members.");
-      }
+      setMembers(result); // Directly set the array
     } catch (error) {
       console.error("Error fetching members:", error);
       setError("Unable to fetch members. Please try again.");
@@ -46,30 +39,28 @@ const MembersPage = () => {
     }
   };
 
-  // Delete a member by ID
-  const deleteMember = async (id: number) => {
+  // Update the deleteMember function to use the correct URL
+  const deleteMember = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this member?")) return;
+
     try {
-      const confirmDelete = window.confirm(
-        "Are you sure you want to delete this member?"
+      const response = await fetch(
+        `https://alhudaic.ca/api/view_members.php?id=${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
-      if (!confirmDelete) return;
-      const response = await fetch("https://alhudaic.ca/api/members.php", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "omit",
-      });
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const result = await response.json();
-
       if (result.success) {
-        setMembers((prevMembers) =>
-          prevMembers.filter((member) => member.id !== id)
-        );
+        setMembers((prev) => prev.filter((member) => member.id !== id));
       } else {
         alert(result.message || "Failed to delete member.");
       }
@@ -79,25 +70,17 @@ const MembersPage = () => {
     }
   };
 
-  // Fetch data on component mount and every 10 seconds for real-time updates
   useEffect(() => {
     fetchMembers();
-
-    const interval = setInterval(fetchMembers, 10000); // Update every 10 seconds
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    const interval = setInterval(fetchMembers, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-7xl mx-auto">
+    <div className="p-6 bg-white rounded-lg shadow-lg ">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Members List</h2>
-
-      {/* Loading State */}
       {loading && <p className="text-gray-500">Loading members...</p>}
-
-      {/* Error State */}
       {error && <p className="text-red-500">{error}</p>}
-
-      {/* Members Table */}
       {!loading && !error && (
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">

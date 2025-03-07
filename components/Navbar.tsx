@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center p-4 bg-green-700 text-white">
-      <h1 className="text-lg font-bold">ALHUDA</h1>
+      <h1 className="text-lg font-bold">Al-Huda Islamic Center</h1>
 
       {user ? (
         <div className="flex items-center gap-3">

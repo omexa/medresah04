@@ -62,12 +62,12 @@ function Navbar() {
               >
                 Login
               </Link>
-              {/* <Link
-                href='/member_registration'
-                className='hover:text-gray-500 text-xs sm:text-sm'
+              <Link
+                href="/member_registration"
+                className="hover:text-gray-500 text-xs sm:text-sm"
               >
                 Sign Up
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@ function Navbar() {
               href="/iftar"
               className="py-2 px-6 font-bold text-black bg-gold rounded-sm hover:bg-yellow-400 text-xs sm:text-sm"
             >
-              Niyah For Iftar
+              Iftar Sponsorship
             </Link>
           </div>
           <div className="md:hidden">
@@ -171,7 +171,7 @@ function Navbar() {
                 className="py-2 px-4 font-bold text-center text-white bg-gold rounded-md hover:bg-yellow-400"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Niya For Iftar
+                Iftar Sponsorship
               </Link>
             </div>
           </div>

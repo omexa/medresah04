@@ -146,10 +146,6 @@ const ActivitiesPage: React.FC = () => {
 
   return (
     <div className="p-6 bg-gray-50 h-full overflow-hidden ">
-      <h2 className="text-xl font-bold text-gray-800 mb-6">
-        Activities Management
-      </h2>
-
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
           <Button className="mb-6 bg-green-600 hover:bg-green-700 text-white shadow-md">
