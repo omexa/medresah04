@@ -168,10 +168,10 @@ const PrayerTimeCalendar: React.FC = () => {
           </h4>
 
           <div className="relative z-10 text-4xl text-white max-sm:text-xs group-hover:text-white font-mono">
-            6:00 PM
+            1:00 PM
           </div>
           <div className="relative z-10 text-md text-white mt-2 max-sm:text-xs group-hover:text-white font-mono">
-            6:25 PM
+            1:25 PM
           </div>
           <div className="relative z-10 text-gold-500 mt-2">
             <BsFillRecordCircleFill size={16} color="gold" />
