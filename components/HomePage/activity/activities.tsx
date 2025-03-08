@@ -75,7 +75,7 @@ const ProgramsPage: React.FC = () => {
             )}
 
             {/* Register Button */}
-            {/* <div className="p-6">
+            <div className="p-6">
               <a
                 href={activity.link}
                 target="_blank"
@@ -84,7 +84,7 @@ const ProgramsPage: React.FC = () => {
               >
                 Register
               </a>
-            </div> */}
+            </div>
           </div>
         ))}
       </div>
