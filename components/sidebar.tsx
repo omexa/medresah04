@@ -33,7 +33,7 @@ const Sidebar = () => {
           {isOpen ? <ChevronLeft size={24} /> : <Menu size={24} />}
         </button>
         {/* Navigation Links */}
-        <nav className="mt-4 flex-1">
+        <nav className="mt-4  flex-1 gap-2">
           <ul>
             {[
               {
@@ -76,10 +76,15 @@ const Sidebar = () => {
                 label: "Sliders",
                 icon: <Image size={20} />,
               },
+              {
+                href: "/form/events/",
+                label: "Sliders",
+                icon: <Image size={20} />,
+              },
             ].map(({ href, label, icon }) => (
               <li
                 key={href}
-                className={`p-3 hover:bg-gray-700 ${
+                className={`p-3 hover:bg-white hover:text-green-900 ${
                   pathname === href ? "bg-white text-green-900" : ""
                 }`}
               >

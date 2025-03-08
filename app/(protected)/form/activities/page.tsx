@@ -119,20 +119,17 @@ const ActivitiesPage: React.FC = () => {
   // Handle delete
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this activity?")) return;
-
     setLoading(true);
     try {
       const response = await fetch("https://alhudaic.ca/api/activities.php", {
         method: "POST",
-        body: new URLSearchParams({
-          delete: String(Number(id)), // Convert ID to a string after ensuring it's a number
-        }).toString(),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ delete: id }).toString(),
       });
-
       const result = await response.json();
       if (result.success) {
         alert("Activity deleted successfully!");
-        fetchActivities(); // Refresh the activities after deletion
+        fetchActivities();
       } else {
         alert("Failed to delete activity. Please try again.");
       }
