@@ -178,7 +178,14 @@ const PrayerTimeCalendar: React.FC = () => {
           </div>
         </div>
       </div>
-
+      <div className="w-full flex items-center justify-center ">
+        <a
+          href="/member_registration"
+          className="bg-gold m-2 p-2 py-4 rounded-sm font-bold"
+        >
+          Become A member
+        </a>
+      </div>
       {/* Ramadan Countdown */}
       {daysUntilRamadan !== null && countdown && (
         <div

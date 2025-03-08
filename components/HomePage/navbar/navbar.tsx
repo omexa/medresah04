@@ -62,12 +62,12 @@ function Navbar() {
               >
                 Login
               </Link>
-              <Link
+              {/* <Link
                 href="/member_registration"
                 className="hover:text-gray-500 text-xs sm:text-sm"
               >
                 Sign Up
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
