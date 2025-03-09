@@ -81,6 +81,11 @@ const Sidebar = () => {
                 label: "Sliders",
                 icon: <Image size={20} />,
               },
+              {
+                href: "/form/prayer/",
+                label: "Prayer Times",
+                icon: <Image size={20} />,
+              },
             ].map(({ href, label, icon }) => (
               <li
                 key={href}

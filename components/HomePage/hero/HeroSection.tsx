@@ -4,6 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaPaypal } from "react-icons/fa";
 // import FetchSlide from "../fetchData/fetchVideo";
 import FetchVideoAndImage from "../fetchData/fetchVideo";
+import PrayerTimesTable from "../calander/PrayerFromDb";
+// import PrayerTimePP from "../calander/prayerTimeSimple";
+// import PrayerTimeCalendarNew from "../calander/PrayerTimeFromApi";
 
 const HeroSection: React.FC = () => {
   const [isTextVisible, setIsTextVisible] = useState(false);
@@ -44,12 +47,15 @@ const HeroSection: React.FC = () => {
             : "opacity-0 scale-75 translate-x-[-50px]"
         } text-center lg:text-left`}
       >
-        <h2 className="text-3xl max-sm:text-2xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 max-sm:mb-2">
+        {/* <h2 className="text-3xl max-sm:text-2xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 max-sm:mb-2">
           Purity Comes From Faith
         </h2>
         <p className="text-lg text-gray-700 mb-8 max-sm:text-sm max-sm:mb-2">
           Join us in fostering a community of faith, charity, and compassion.
-        </p>
+        </p> */}
+        <PrayerTimesTable />
+        {/* <PrayerTimePP /> */}
+        {/* <PrayerTimeCalendarNew /> */}
         <div className="grid grid-flow-col justify-between gap-4 max-sm:gap-2">
           <a
             href="https://donorchoice.ca/embedded/mumfc"
